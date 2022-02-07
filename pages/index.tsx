@@ -3,8 +3,22 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client/core';
 
-const Home: NextPage = ({ launches }: any) => {
-  console.log(launches);
+interface Launch {
+  id: string;
+  launch_date_local: string;
+  launch_site: {
+    site_name_long: string;
+  };
+  links: {
+    mission_patch: string;
+    video_link: string;
+  };
+  mission_name: string;
+  rocket: {};
+  __typename: string;
+}
+
+const Home: NextPage = ({ launches }: { launches: Launch[] }) => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -13,7 +27,7 @@ const Home: NextPage = ({ launches }: any) => {
 
         {/* Start of the GRID */}
         <div className={styles.grid}>
-          {launches.map((launch: any) => {
+          {launches.map((launch: Launch) => {
             let url;
             launch.links.mission_patch ? (url = launch.links.mission_patch) : (url = 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png');
             return (
@@ -21,12 +35,12 @@ const Home: NextPage = ({ launches }: any) => {
                 <Image alt='Mission Patch' src={url} width='300' height='300' />
                 <h2>{launch.mission_name}</h2>
                 <p>
-                  <strong>Launched:</strong>
+                  <strong>Date:</strong>
                   {new Date(launch.launch_date_local).toLocaleDateString('en-US')}
                 </p>
                 <br />
                 <p>
-                  <strong>Launch location: </strong>
+                  <strong>Location: </strong>
                   {launch.launch_site.site_name_long}
                 </p>
               </a>

@@ -70,11 +70,10 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
+  gap: 2rem;
 }
 
 .card {
-  margin: 1rem;
-
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -82,8 +81,8 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  min-height: 300px;
-  max-width: 300px;
+  min-height: 500px;
+  width: 300px;
 }
 
 .card:hover,
