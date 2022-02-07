@@ -1,4 +1,3 @@
-import type { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client/core';
@@ -18,7 +17,7 @@ interface Launch {
   __typename: string;
 }
 
-const Home: NextPage = ({ launches }: { launches: Launch[] }) => {
+const Home = ({ launches }: { launches: Launch[] }) => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
